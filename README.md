@@ -1,5 +1,5 @@
 # OpenAI GPT based PR reviewer and summarizer
-
+Testing AI review bot
 ![AI](./docs/images/ai.png)
 
 ## Overview
