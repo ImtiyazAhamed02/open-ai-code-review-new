@@ -361,36 +361,15 @@ Tips:
             }
 
             try {
-              // const [response, patch_ids] = await bot.chat(
-              //   prompts.render_review_patch(ins),
-              //   next_review_ids
-              // )
-            const response = `
-                    {
-                      "bugs": [
-                        {
-                          "description": "Possible null pointer dereference",
-                          "line_number": "24",
-                          "severity": "High"
-                        }
-                      ],
-                      "security_issues": [],
-                      "performance_improvements": [
-                        {
-                          "description": "Avoid repeated DB calls inside loop",
-                          "line_number": "40",
-                          "severity": "Medium"
-                        }
-                      ],
-                      "best_practices": [],
-                      "confidence_score": 0.85
-                    }
-                    `;
+              const [response, patch_ids] = await bot.chat(
+                prompts.render_review_patch(ins),
+                next_review_ids
+              )
               if (!response) {
                 core.info('review: nothing obtained from openai')
                 continue
               }
-              // next_review_ids = patch_ids
+              next_review_ids = patch_ids
               if (!options.review_comment_lgtm && response.includes('LGTM')) {
                 continue
               }
